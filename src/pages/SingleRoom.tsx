@@ -1,10 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
+import styled from "styled-components";
 import Banner from "../components/Banner";
 import StyledHero from "../components/StyledHero";
-import { RoomContext } from "../context";
+import { CartContext } from "../contexts/CartContext";
+import { RoomContext } from "../contexts/context";
 import defaultBcg from "../images/room-1.jpeg";
 import { Room } from "../types/room";
+
+type AddToCartProps = {
+  isOnCart: boolean;
+};
+
+const AddToCart = styled.div<AddToCartProps>`
+  border: 2px solid ${p => (p.isOnCart ? "red" : "#af9a7d")};
+  color: ${p => (p.isOnCart ? "red" : "#af9a7d")};
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+`;
 
 type SingleRoomPageProps = RouteComponentProps<{ slug: string }>;
 
@@ -16,6 +31,9 @@ const SingleRoomPage: React.FC<SingleRoomPageProps> = ({
   const [room, setRoom] = useState<Room | undefined>(undefined);
 
   const { getRoom } = useContext(RoomContext);
+  const { cart, handleAddToCart, handleDeleteFromCart } = useContext(
+    CartContext
+  );
 
   useEffect(() => {
     getRoom(slug).then(room => setRoom(room));
@@ -44,6 +62,16 @@ const SingleRoomPage: React.FC<SingleRoomPageProps> = ({
   } = room;
 
   const defaultImages = images.slice(1);
+
+  const handleIsOnCart = () => {
+    return cart.find(room => room === slug) ? true : false;
+  };
+
+  const handleFunctionCart = (isOnCart: boolean) => {
+    return isOnCart
+      ? () => handleDeleteFromCart(slug)
+      : () => handleAddToCart(slug);
+  };
 
   return (
     <>
@@ -85,6 +113,14 @@ const SingleRoomPage: React.FC<SingleRoomPageProps> = ({
             <li key={index}>- {item}</li>
           ))}
         </ul>
+      </section>
+      <section className="room-add">
+        <AddToCart
+          isOnCart={handleIsOnCart()}
+          onClick={handleFunctionCart(handleIsOnCart())}
+        >
+          {handleIsOnCart() ? "Delete" : "Add"}
+        </AddToCart>
       </section>
     </>
   );

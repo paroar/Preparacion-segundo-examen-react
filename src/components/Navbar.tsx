@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { FaAlignRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { CartContextConsumer } from "../contexts/CartContext";
 import logo from "../images/logo.svg";
+import Svg from "./Svg";
 
 export default class Navbar extends Component {
   state = {
@@ -36,6 +38,18 @@ export default class Navbar extends Component {
           </ul>
         </div>
         <div className="nav__right">
+          <CartContextConsumer>
+            {value => (
+              <button
+                type="button"
+                className="nav__btn"
+                onClick={value.handleIsOpen}
+              >
+                <Svg name={"shopping-cart"} />
+              </button>
+            )}
+          </CartContextConsumer>
+
           <button
             type="button"
             className="nav__btn"

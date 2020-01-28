@@ -47,7 +47,8 @@
   font-weight: 300;
 }
 
-.room-extras {
+.room-extras,
+.room-add {
   width: 80vw;
   margin: 0 auto 3rem auto;
 }
@@ -66,10 +67,10 @@
 }
 
 @media screen and (min-width: 992px) {
-
   .single-room-images,
   .single-room-info,
-  .room-extras {
+  .room-extras,
+  .room-add {
     width: 95vw;
     max-width: 1170px;
   }

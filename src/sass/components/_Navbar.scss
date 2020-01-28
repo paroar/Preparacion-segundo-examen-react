@@ -5,7 +5,7 @@
   width: 100%;
   padding: 0.75rem 1rem;
   background: $off-white;
-  z-index: 1;
+  z-index: 2;
 
   &__left {
     float: left;
@@ -27,6 +27,8 @@
     color: $primary-color;
     width: 3rem;
     height: 3rem;
+    fill: $primary-color;
+    margin-left: 2rem;
   }
 
   &__links,

@@ -7,6 +7,7 @@ const StyledHero = styled.header<{ img: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 export default StyledHero;

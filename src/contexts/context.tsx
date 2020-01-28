@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Room, RoomFilter } from "./types/room";
-import fetch from "./utils/mockFetch";
+import { Room, RoomFilter } from "../types/room";
+import fetch from "../utils/mockFetch";
 
 export type RoomProviderState = {
   rooms: Room[];
@@ -18,12 +18,6 @@ export interface RoomContextProps {
   rooms: Room[];
 }
 
-const InitialState: RoomProviderState = {
-  rooms: [],
-  featuredRooms: [],
-  loading: false
-};
-
 const RoomContext = React.createContext<RoomContextProps>({
   loading: false,
   getRoom: async () => undefined,
@@ -33,16 +27,24 @@ const RoomContext = React.createContext<RoomContextProps>({
 });
 
 class RoomProvider extends Component<{}, RoomProviderState> {
-  state = InitialState;
+  state: RoomProviderState = {
+    rooms: [],
+    featuredRooms: [],
+    loading: false
+  };
 
   getRoom = async (slug: string) => {
     const room = this.state.rooms.find(room => room.slug === slug);
+
     if (room) {
+      console.log("ROOM", room);
       return room;
     }
     const rooms = await fetch<Room[]>(
       `/rooms?filter=${JSON.stringify({ slug })}`
     ).then(response => response.json());
+    console.log("ROOMS[0]", rooms[0]);
+
     return rooms[0];
   };
 

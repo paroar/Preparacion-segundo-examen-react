@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetRooms } from "../context";
+import { GetRooms } from "../contexts/context";
 import { rooms } from "../fake-data";
 import { RoomFilter } from "../types/room";
 import { getUnique } from "../utils/getUnique";
@@ -11,13 +11,12 @@ const maxSize = Math.max(...rooms.map(item => item.size));
 
 const initialFilter: RoomFilter = {
   type: "all",
-  capacity: [1,],
-  // eslint-disable-next-line
+  capacity: [1],
   price: [, maxPrice],
   size: [0, maxSize],
   breakfast: false,
   pets: false
-}
+};
 
 const sanitizeFilter = (filter: RoomFilter) => {
   let sanitizedFilter = { ...filter };
@@ -34,17 +33,21 @@ const sanitizeFilter = (filter: RoomFilter) => {
     delete sanitizedFilter.capacity;
   }
   return sanitizedFilter;
-}
+};
 
 const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
-  const [filter, setFilter] = useState(initialFilter)
+  const [filter, setFilter] = useState(initialFilter);
+
   useEffect(() => {
-    filterRooms(sanitizeFilter(filter))
-  }, [filter, filterRooms])
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    filterRooms(sanitizeFilter(filter));
+  }, [filter, filterRooms]);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const target = event.target;
 
-    setFilter((prevFilter) => {
+    setFilter(prevFilter => {
       // @ts-ignore
       let value = target.type === "checkbox" ? target.checked : target.value;
       let name = target.name;
@@ -55,7 +58,7 @@ const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
       }
 
       if (name === "capacity") {
-        value = [parseInt(value),];
+        value = [parseInt(value)];
       }
 
       if (name === "minSize") {
@@ -71,7 +74,7 @@ const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
       const newFilter = { ...prevFilter, [name]: value };
 
       return newFilter;
-    })
+    });
   };
 
   // get unique types
