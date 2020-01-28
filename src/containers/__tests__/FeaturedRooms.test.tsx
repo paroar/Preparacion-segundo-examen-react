@@ -1,7 +1,7 @@
 import { waitForElement } from "@testing-library/react";
 import React from "react";
 import FeaturedRooms from "../../containers/FeaturedRooms";
-import { RoomProvider } from "../../context";
+import { RoomProvider } from "../../contexts/context";
 import { renderRouter } from "../../utils/tests";
 
 jest.useFakeTimers();

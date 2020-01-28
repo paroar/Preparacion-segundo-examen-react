@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetRooms } from "../context";
+import { GetRooms } from "../contexts/context";
 import { rooms } from "../fake-data";
 import { RoomFilter } from "../types/room";
 import { getUnique } from "../utils/getUnique";

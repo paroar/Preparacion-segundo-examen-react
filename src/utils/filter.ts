@@ -1,8 +1,4 @@
-const allKeysFilter = <
-  T extends {
-    [index: string]: any;
-  }
->(
+const allKeysFilter = <T extends { [index: string]: any; }>(
   xss: T[],
   filter: { [k in keyof T]: (x: T[k]) => boolean }
 ) => {
