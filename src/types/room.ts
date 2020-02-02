@@ -20,7 +20,7 @@ export type RoomFilter = {
   capacity?: [number | undefined, (number | undefined)?];
   price?: [number | undefined, (number | undefined)?];
   size?: [number | undefined, (number | undefined)?];
-  breakfast?: boolean;
-  pets?: boolean;
-  featured?: boolean;
+  breakfast?: string | boolean;
+  pets?: string | boolean;
+  featured?: string | boolean;
 };
