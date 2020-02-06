@@ -18,7 +18,8 @@ const initialFilter: RoomFilter = {
   size: [minSize, maxSize],
   breakfast: "Breakfast",
   pets: "Pets",
-  featured: "Featured"
+  featured: "Featured",
+  name: ""
 };
 
 const sanitizeFilter = (filter: RoomFilter) => {
@@ -50,6 +51,8 @@ const sanitizeFilter = (filter: RoomFilter) => {
   if (sanitizedFilter.featured === "Featured") {
     delete sanitizedFilter.featured;
   }
+  console.log(sanitizedFilter);
+
   return sanitizedFilter;
 };
 
@@ -150,6 +153,16 @@ const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
     <section className="filter-container">
       <Title title="search rooms" />
       <form className="filter-form">
+        <div className="form-group">
+          <label htmlFor="type">room name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+        </div>
         {/* select type */}
         <div className="form-group">
           <label htmlFor="type">room type</label>
