@@ -11,13 +11,14 @@ const maxSize = Math.max(...rooms.map(item => item.size));
 
 const initialFilter: RoomFilter = {
   type: "all",
-  capacity: [1,],
+  capacity: [1],
   // eslint-disable-next-line
   price: [, maxPrice],
   size: [0, maxSize],
   breakfast: false,
-  pets: false
-}
+  pets: false,
+  name: ""
+};
 
 const sanitizeFilter = (filter: RoomFilter) => {
   let sanitizedFilter = { ...filter };
@@ -33,18 +34,24 @@ const sanitizeFilter = (filter: RoomFilter) => {
   if (sanitizedFilter.capacity![0] === 1) {
     delete sanitizedFilter.capacity;
   }
+  console.log(sanitizedFilter);
+
   return sanitizedFilter;
-}
+};
 
 const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
-  const [filter, setFilter] = useState(initialFilter)
+  const [filter, setFilter] = useState(initialFilter);
+
   useEffect(() => {
-    filterRooms(sanitizeFilter(filter))
-  }, [filter, filterRooms])
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    filterRooms(sanitizeFilter(filter));
+  }, [filter, filterRooms]);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const target = event.target;
 
-    setFilter((prevFilter) => {
+    setFilter(prevFilter => {
       // @ts-ignore
       let value = target.type === "checkbox" ? target.checked : target.value;
       let name = target.name;
@@ -55,7 +62,7 @@ const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
       }
 
       if (name === "capacity") {
-        value = [parseInt(value),];
+        value = [parseInt(value)];
       }
 
       if (name === "minSize") {
@@ -71,7 +78,7 @@ const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
       const newFilter = { ...prevFilter, [name]: value };
 
       return newFilter;
-    })
+    });
   };
 
   // get unique types
@@ -94,6 +101,16 @@ const RoomsFilter = ({ filterRooms }: { filterRooms: GetRooms }) => {
     <section className="filter-container">
       <Title title="search rooms" />
       <form className="filter-form">
+        <div className="form-group">
+          <label htmlFor="type">room name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+        </div>
         {/* select type */}
         <div className="form-group">
           <label htmlFor="type">room type</label>

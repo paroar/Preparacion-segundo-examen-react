@@ -23,4 +23,5 @@ export type RoomFilter = {
   breakfast?: boolean;
   pets?: boolean;
   featured?: boolean;
+  name?: string;
 };

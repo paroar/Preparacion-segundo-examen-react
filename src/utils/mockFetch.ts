@@ -35,7 +35,7 @@ const mockFetch = <T>(url: string): Promise<JSONResponse<T>> =>
       }
 
       reject("Invalid end point");
-    }, 1000);
+    }, 5000);
   });
 
 export default mockFetch;

@@ -10,7 +10,7 @@ const allKeysFilter = <
     Object.entries(filter).every(([k, v]) =>
       k in xs && Array.isArray(v)
         ? (!("0" in v) || v[0] <= xs[k]) && (!("1" in v) || xs[k] <= v[1])
-        : v === xs[k]
+        : v === xs[k] || xs.name.includes(v)
     )
   );
 
