@@ -12,6 +12,9 @@ export type Room = {
   description: string;
   extras: string[];
   images: string[];
+  inCart: boolean;
+  amount: number;
+  total: number;
 };
 
 export type RoomFilter = {

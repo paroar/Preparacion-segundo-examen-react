@@ -38,7 +38,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img1, room2, room3, room4]
+    images: [img1, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "2",
@@ -62,7 +65,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img2, room2, room3, room4]
+    images: [img2, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "3",
@@ -86,7 +92,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img3, room2, room3, room4]
+    images: [img3, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "4",
@@ -110,7 +119,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img4, room2, room3, room4]
+    images: [img4, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "5",
@@ -134,7 +146,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img5, room2, room3, room4]
+    images: [img5, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "6",
@@ -158,7 +173,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img6, room2, room3, room4]
+    images: [img6, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "7",
@@ -182,7 +200,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img7, room2, room3, room4]
+    images: [img7, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "8",
@@ -206,7 +227,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img8, room2, room3, room4]
+    images: [img8, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "9",
@@ -230,7 +254,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img9, room2, room3, room4]
+    images: [img9, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "10",
@@ -254,7 +281,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img10, room2, room3, room4]
+    images: [img10, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "11",
@@ -278,7 +308,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img11, room2, room3, room4]
+    images: [img11, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "12",
@@ -302,7 +335,10 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [img12, room2, room3, room4]
+    images: [img12, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   },
   {
     id: "13",
@@ -326,6 +362,9 @@ export default [
       "Internet",
       "Comfortable beds"
     ],
-    images: [room1, room2, room3, room4]
+    images: [room1, room2, room3, room4],
+    inCart: false,
+    amount: 0,
+    total: 0
   }
 ];
