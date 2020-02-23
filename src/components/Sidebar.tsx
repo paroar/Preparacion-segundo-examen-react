@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../contexts/CartContext";
 import { Room } from "../types/room";
@@ -11,7 +12,9 @@ const Sidebar: React.FC = () => {
     <PlegableSidebar isOpen={isCartOpen}>
       {cart.map((p: Room) => (
         <Product isOpen={isCartOpen} key={p.id}>
-          <img src={p.images[0]} />
+          <Link to={`/rooms/${p.slug}`}>
+            <img src={p.images[0]} />
+          </Link>
           <div onClick={() => deleteFromCart(p.id)}>
             <button type="button" className="nav__btn">
               <Svg name="circle-with-cross" />
@@ -52,4 +55,8 @@ const Product = styled.div<PlegableSidebarProps>`
   align-items: center;
   transition: all 2s;
   overflow: hidden;
+
+  & > a > img {
+    width: 100%;
+  }
 `;

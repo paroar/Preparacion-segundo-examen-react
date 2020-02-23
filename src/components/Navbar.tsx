@@ -39,15 +39,19 @@ export default class Navbar extends Component {
         </div>
         <div className="nav__right">
           <CartContextConsumer>
-            {value => (
-              <button
-                type="button"
-                className="nav__btn"
-                onClick={value.handleIsOpen}
-              >
-                <Svg name={"shopping-cart"} />
-              </button>
-            )}
+            {value => {
+              const { cart } = value;
+              return (
+                <button
+                  type="button"
+                  className="nav__btn"
+                  onClick={value.handleIsOpen}
+                >
+                  <Svg name={"shopping-cart"} />
+                  {cart.length}
+                </button>
+              );
+            }}
           </CartContextConsumer>
 
           <button
