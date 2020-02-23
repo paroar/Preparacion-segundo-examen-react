@@ -6,22 +6,27 @@ import { Room } from "../types/room";
 import Svg from "./Svg";
 
 const Sidebar: React.FC = () => {
-  const { isCartOpen, cart, deleteFromCart } = useContext(CartContext);
+  const { isCartOpen, cart, deleteFromCart, clearCart } = useContext(
+    CartContext
+  );
 
   return (
     <PlegableSidebar isOpen={isCartOpen}>
-      {cart.map((p: Room) => (
-        <Product isOpen={isCartOpen} key={p.id}>
-          <Link to={`/rooms/${p.slug}`}>
-            <img src={p.images[0]} />
-          </Link>
-          <div onClick={() => deleteFromCart(p.id)}>
-            <button type="button" className="nav__btn">
-              <Svg name="circle-with-cross" />
-            </button>
-          </div>
-        </Product>
-      ))}
+      <PlegableContent>
+        {cart.map((p: Room) => (
+          <Product isOpen={isCartOpen} key={p.id}>
+            <Link to={`/rooms/${p.slug}`}>
+              <img src={p.images[0]} />
+            </Link>
+            <div onClick={() => deleteFromCart(p.id)}>
+              <button type="button" className="nav__btn">
+                <Svg name="circle-with-cross" />
+              </button>
+            </div>
+          </Product>
+        ))}
+      </PlegableContent>
+      <ClearCart onClick={clearCart}>Clear</ClearCart>
     </PlegableSidebar>
   );
 };
@@ -39,11 +44,16 @@ const PlegableSidebar = styled.div<PlegableSidebarProps>`
   background-color: #f7f7f7;
   right: 0;
   transition: all 1s;
-  display: flex;
-  flex-direction: column;
   padding: 1rem;
   transform: ${p => (p.isOpen ? null : "translateX(2rem)")};
-  height: 100%;
+  height: calc(100vh - 7rem);
+  display: grid;
+  justify-items: center;
+`;
+
+const PlegableContent = styled.div`
+  width: 100%;
+  overflow-y: auto;
 `;
 
 const Product = styled.div<PlegableSidebarProps>`
@@ -58,5 +68,22 @@ const Product = styled.div<PlegableSidebarProps>`
 
   & > a > img {
     width: 100%;
+  }
+`;
+
+export const ClearCart = styled.button`
+  text-transform: uppercase;
+  background-color: #af9a7d;
+  color: black;
+  border: 2px solid #af9a7d;
+  display: inline-block;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  width: 90%;
+  align-self: flex-end;
+  &:hover {
+    color: #af9a7d;
+    background-color: transparent;
   }
 `;

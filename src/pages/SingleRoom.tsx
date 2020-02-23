@@ -122,7 +122,7 @@ type AddToCartProps = {
   inCart?: boolean;
 };
 
-const AddToCart = styled.button<AddToCartProps>`
+export const AddToCart = styled.button<AddToCartProps>`
   background-color: ${p => (p.inCart ? "gray" : "#af9a7d")};
   color: black;
   border: 2px solid ${p => (p.inCart ? "gray" : "#af9a7d")};

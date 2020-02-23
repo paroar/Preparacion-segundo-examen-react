@@ -51,7 +51,14 @@ const CartContextProvider: React.FC = props => {
   };
 
   const clearCart = () => {
-    cart.forEach(c => deleteFromCart(c.id));
+    let tempRooms = [...rooms];
+    tempRooms.forEach(c => {
+      c.inCart = false;
+      c.amount = 0;
+      c.total = 0;
+    });
+    setCart([]);
+    setRooms(tempRooms);
   };
 
   // const getRoom = (id: string) => {
