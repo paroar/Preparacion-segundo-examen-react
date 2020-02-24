@@ -9,6 +9,8 @@ export interface CartContextProps {
   addToCart: (id: string) => void;
   deleteFromCart: (id: string) => void;
   clearCart: () => void;
+  increment: (id: string) => void;
+  decrement: (id: string) => void;
 }
 
 const CartContext = React.createContext<CartContextProps>({
@@ -17,7 +19,9 @@ const CartContext = React.createContext<CartContextProps>({
   cart: [] as Room[],
   addToCart: () => {},
   deleteFromCart: () => {},
-  clearCart: () => {}
+  clearCart: () => {},
+  increment: () => {},
+  decrement: () => {}
 });
 
 const CartContextProvider: React.FC = props => {
@@ -61,9 +65,37 @@ const CartContextProvider: React.FC = props => {
     setRooms(tempRooms);
   };
 
-  // const getRoom = (id: string) => {
-  //   return rooms.find(r => r.id === id);
-  // };
+  const increment = (id: string) => {
+    let tempCart = [...cart];
+    const cartFind = getRoom(id);
+    if (cartFind) {
+      let i = tempCart.indexOf(cartFind);
+      tempCart[i].amount++;
+      tempCart[i].total += tempCart[i].price;
+    }
+    setCart(tempCart);
+  };
+
+  const decrement = (id: string) => {
+    let tempCart = [...cart];
+    const cartFind = getRoom(id);
+    if (cartFind) {
+      let i = tempCart.indexOf(cartFind);
+      if (tempCart[i].amount > 1) {
+        tempCart[i].amount--;
+        tempCart[i].total -= tempCart[i].price;
+      } else {
+        tempCart[i].amount = 0;
+        tempCart[i].inCart = false;
+        tempCart = tempCart.filter(c => c.id !== id);
+      }
+    }
+    setCart(tempCart);
+  };
+
+  const getRoom = (id: string) => {
+    return rooms.find(r => r.id === id);
+  };
 
   return (
     <CartContext.Provider
@@ -73,7 +105,9 @@ const CartContextProvider: React.FC = props => {
         cart,
         addToCart,
         deleteFromCart,
-        clearCart
+        clearCart,
+        increment,
+        decrement
       }}
     >
       {props.children}

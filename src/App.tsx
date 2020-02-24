@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Checkout from "./pages/Checkout";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/rooms/" component={Rooms} />
         <Route exact path="/rooms/:slug" component={SingleRoom} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route component={Error} />
       </Switch>
     </div>

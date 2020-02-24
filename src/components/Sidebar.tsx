@@ -6,9 +6,7 @@ import { Room } from "../types/room";
 import Svg from "./Svg";
 
 const Sidebar: React.FC = () => {
-  const { isCartOpen, cart, deleteFromCart, clearCart } = useContext(
-    CartContext
-  );
+  const { isCartOpen, cart, deleteFromCart } = useContext(CartContext);
 
   return (
     <PlegableSidebar isOpen={isCartOpen}>
@@ -26,7 +24,9 @@ const Sidebar: React.FC = () => {
           </Product>
         ))}
       </PlegableContent>
-      <ClearCart onClick={clearCart}>Clear</ClearCart>
+      <Link to="/checkout">
+        <BuyCart>Checkout</BuyCart>
+      </Link>
     </PlegableSidebar>
   );
 };
@@ -48,7 +48,7 @@ const PlegableSidebar = styled.div<PlegableSidebarProps>`
   transform: ${p => (p.isOpen ? null : "translateX(2rem)")};
   height: calc(100vh - 7rem);
   display: grid;
-  justify-items: center;
+  grid-template-rows: 1fr min-content;
 `;
 
 const PlegableContent = styled.div`
@@ -71,7 +71,7 @@ const Product = styled.div<PlegableSidebarProps>`
   }
 `;
 
-export const ClearCart = styled.button`
+export const BuyCart = styled.button`
   text-transform: uppercase;
   background-color: #af9a7d;
   color: black;
